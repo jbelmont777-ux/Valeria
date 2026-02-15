@@ -2,238 +2,157 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Valeria | Eclipse Eterno</title>
+    <title>Valeria | Mi Eclipse Eterno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Pirata+One&family=Creepster&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --sangre: #800000;
-            --sangre-brillante: #ff0000;
-            --oscuro: #0a0a0a;
-            --dorado-oscuro: #5c5c5c;
+            --rojo-brillante: #ff0000;
+            --rojo-oscuro: #8b0000;
+            --negro-puro: #000000;
+            --dorado-tenue: #a8a8a8;
         }
 
-        /* Pantalla de Inicio Obligatoria */
+        /* Pantalla de Entrada */
         #overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            transition: 1.5s;
+            background: var(--negro-puro);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            z-index: 1000; transition: 1.5s;
         }
 
         #startBtn {
             background: transparent;
-            color: var(--sangre-brillante);
-            border: 1px solid var(--sangre);
+            color: var(--rojo-brillante);
+            border: 2px solid var(--rojo-oscuro);
             padding: 20px 40px;
-            font-family: 'Georgia', serif;
-            font-size: 1.2rem;
+            font-family: 'Pirata One', cursive;
+            font-size: 1.8rem;
             letter-spacing: 5px;
             cursor: pointer;
-            box-shadow: 0 0 20px var(--sangre);
+            box-shadow: 0 0 20px var(--rojo-oscuro);
             transition: 0.5s;
         }
 
-        #startBtn:hover {
-            background: var(--sangre);
-            color: white;
-            box-shadow: 0 0 40px var(--sangre-brillante);
-        }
-
-        /* Estilo General */
+        /* Fondo de Papel Tapiz Rojo Brillante */
         body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Georgia', serif;
-            color: white;
-            overflow-x: hidden;
-            background-color: #000;
-            /* Papel tapiz gótico */
+            margin: 0; min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Georgia', serif; color: white; overflow-x: hidden;
+            background-color: #4b0000;
             background-image: 
-                radial-gradient(circle at 50% 50%, rgba(128, 0, 0, 0.15), transparent),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%231a1a1a' fill-opacity='0.5'%3E%3Cpath d='M40 0l-4 4-8-8-8 8-4-4-4 4 8 8-8 8 4 4 4-4 8 8 8-8 4 4 4-4-8-8 8-8-4-4z'/%3E%3C/g%3E%3C/svg%3E");
+                radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.8)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C60 20 80 20 100 0 L100 100 C80 80 60 80 50 100 C40 80 20 80 0 100 L0 0 C20 20 40 20 50 0' fill='%23660000' fill-opacity='0.4'/%3E%3C/svg%3E");
+            background-attachment: fixed;
         }
 
-        /* Botón Multimedia Flotante */
-        #musicToggle {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: rgba(0,0,0,0.8);
-            color: var(--sangre-brillante);
-            border: 1px solid var(--sangre);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 500;
-            font-size: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-
-        /* Tarjeta Principal */
         .main-card {
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(0, 0, 0, 0.9);
             padding: 50px 30px;
-            border: 2px solid var(--sangre);
-            box-shadow: 0 0 50px #000;
-            max-width: 500px;
-            width: 90%;
-            text-align: center;
-            position: relative;
-            z-index: 10;
+            border: 3px double var(--rojo-brillante);
+            box-shadow: 0 0 60px #000, inset 0 0 30px var(--rojo-oscuro);
+            max-width: 500px; width: 90%; text-align: center;
+            position: relative; z-index: 10;
         }
 
+        /* Nombre Estilo Tim Burton */
         .title {
-            font-size: 3.5rem;
-            color: var(--sangre-brillante);
-            text-shadow: 0 0 15px var(--sangre);
-            margin-bottom: 30px;
-            letter-spacing: 3px;
+            font-family: 'UnifrakturMaguntia', cursive;
+            font-size: 5rem;
+            color: var(--rojo-brillante);
+            text-shadow: 4px 4px 0px #000, 0 0 25px var(--rojo-brillante);
+            margin: 0 0 30px 0;
+            font-weight: normal;
         }
 
-        /* Marco Gótico Re-estilizado */
+        /* Marco Gótico Avanzado */
         .gothic-frame {
-            width: 250px;
-            height: 330px;
+            width: 260px; height: 340px;
             margin: 0 auto 30px;
-            padding: 12px;
-            background: var(--sangre);
-            clip-path: polygon(15% 0, 85% 0, 100% 15%, 100% 85%, 85% 100%, 15% 100%, 0 85%, 0 15%);
-            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            position: relative;
+            background: var(--rojo-oscuro);
+            padding: 10px;
+            /* Forma de escudo gótico puntiagudo */
+            clip-path: polygon(50% 0%, 100% 10%, 100% 85%, 50% 100%, 0% 85%, 0% 10%);
+            border: 1px solid var(--rojo-brillante);
         }
 
         .inner-frame {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             background: #000;
             overflow: hidden;
-            border: 1px solid var(--dorado-oscuro);
+            clip-path: polygon(50% 2%, 98% 11%, 98% 84%, 50% 98%, 2% 84%, 2% 11%);
         }
 
         .inner-frame img {
-            width: 100%;
-            height: 100%;
+            width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(20%) contrast(1.1) brightness(0.8);
+            filter: grayscale(10%) contrast(1.2) brightness(0.8);
         }
 
         .poem {
-            font-style: italic;
-            line-height: 1.9;
-            color: #ccc;
+            font-family: 'Pirata One', cursive;
+            font-size: 1.5rem;
+            line-height: 1.4;
+            color: #ddd;
             margin-bottom: 40px;
-            font-size: 1.15rem;
+            letter-spacing: 1px;
         }
 
-        .poem span {
-            color: var(--sangre-brillante);
-            font-weight: bold;
+        /* Botones y Mecánica */
+        .btn-container {
+            display: flex; flex-direction: column; align-items: center; gap: 20px;
         }
 
-        /* Botones de Respuesta */
         .btn-si {
-            background: var(--sangre);
+            background: var(--rojo-brillante);
             color: white;
-            border: 1px solid var(--sangre-brillante);
-            padding: 12px 40px;
+            border: 2px solid white;
+            padding: 15px 40px;
             cursor: pointer;
-            font-family: 'Georgia', serif;
-            font-size: 1.1rem;
-            box-shadow: 0 0 10px var(--sangre);
-            transition: 0.3s;
-        }
-
-        .btn-si:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px var(--sangre-brillante);
+            font-family: 'Pirata One', cursive;
+            font-size: 1.5rem;
+            box-shadow: 0 0 20px var(--rojo-brillante);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 50;
         }
 
         #noBtn {
             background: transparent;
             color: #444;
             border: 1px solid #222;
-            padding: 10px 25px;
+            padding: 8px 20px;
             cursor: pointer;
-            margin-left: 15px;
-            transition: 0.2s;
+            font-family: serif;
         }
 
-        /* Rosas Negras Cayendo */
+        /* Pétalos de Rosas Negras */
         .rose-petal {
-            position: fixed;
-            top: -50px;
-            background: #000; /* Rosa Negra */
-            width: 16px;
-            height: 16px;
+            position: fixed; top: -50px;
+            background: #000; width: 18px; height: 18px;
             border-radius: 50% 0 50% 0;
-            border: 1px solid #1a0000;
-            pointer-events: none;
-            z-index: 1;
+            box-shadow: inset -2px -2px 5px #1a0000;
+            pointer-events: none; z-index: 1;
             animation: fall linear infinite;
         }
 
-        @keyframes fall {
-            to { transform: translateY(110vh) rotate(540deg); }
-        }
+        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
 
-        /* Pantalla de Aceptación Final */
+        /* Pantalla de Éxito */
         #success-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: black;
-            display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2000;
-            text-align: center;
-        }
-
-        .success-text {
-            color: var(--sangre-brillante);
-            font-size: 2.8rem;
-            text-shadow: 0 0 25px var(--sangre);
-            padding: 20px;
-            animation: glow 2s infinite alternate;
-        }
-
-        @keyframes glow {
-            from { text-shadow: 0 0 10px var(--sangre); }
-            to { text-shadow: 0 0 30px var(--sangre-brillante); }
-        }
-
-        .back-btn {
-            margin-top: 50px;
-            background: transparent;
-            color: #555;
-            border: 1px solid #333;
-            padding: 10px 20px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 2px;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: black; display: none; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 2000;
         }
     </style>
 </head>
 <body>
 
     <div id="overlay">
-        <button id="startBtn" onclick="iniciarExperiencia()">ENTRAR AL ECLIPSE</button>
-        <p style="margin-top: 20px; color: #333; letter-spacing: 2px; font-size: 0.7rem;">Sube el volumen</p>
+        <button id="startBtn" onclick="iniciar()">ENTRAR AL ECLIPSE</button>
     </div>
-
-    <button id="musicToggle" onclick="toggleMusic()">⏸</button>
 
     <audio id="bgMusic" loop>
         <source src="entre_lo_dulce.mp3" type="audio/mpeg">
@@ -249,67 +168,54 @@
         </div>
 
         <div class="poem">
-            Entre lo <span>dulce</span> de tu risa y lo <span>real</span> de mi deseo,<br>
-            se dibuja un eclipse donde solo tú existes.<br><br>
-            Si el amor es un abismo de sombras,<br>
-            caeré en el tuyo sin pedir absolución.
+            Entre lo <span style="color:var(--rojo-brillante)">dulce</span> de tu risa y lo <span style="color:var(--rojo-brillante)">real</span> de mi deseo...<br>
+            Si el amor es un abismo, caeré en el tuyo sin pedir absolución.
         </div>
 
-        <p style="margin-bottom:25px; letter-spacing: 2px; color: #888;">¿Serías mi San Valentín?</p>
-
-        <div style="display:flex; justify-content:center; align-items:center;">
-            <button class="btn-si" onclick="mostrarExito()">Sí, acepto</button>
-            <button id="noBtn" onmouseover="huirBoton()">No</button>
+        <div class="btn-container">
+            <button class="btn-si" id="siBtn" onclick="aceptar()">SÍ, ACEPTO</button>
+            <button id="noBtn" onmouseover="crecerSi()" onclick="crecerSi()">No</button>
         </div>
     </div>
 
     <div id="success-screen">
-        <div class="success-text">
+        <div style="font-family: 'UnifrakturMaguntia'; color:red; font-size:4rem; text-align:center; text-shadow:0 0 30px red;">
             Sabía que el destino<br>ya lo había decidido... 🖤
         </div>
-        <button class="back-btn" onclick="cerrarExito()">Regresar</button>
+        <button onclick="regresar()" style="margin-top:40px; background:none; border:1px solid #333; color:#555; cursor:pointer;">Regresar</button>
     </div>
 
     <script>
         const music = document.getElementById("bgMusic");
+        let escalaSi = 1;
 
-        function iniciarExperiencia() {
-            music.play().catch(e => console.log("Audio play blocked"));
+        function iniciar() {
+            music.play();
             document.getElementById("overlay").style.opacity = "0";
-            setTimeout(() => {
-                document.getElementById("overlay").style.display = "none";
-            }, 1500);
+            setTimeout(() => { document.getElementById("overlay").style.display = "none"; }, 1000);
         }
 
-        function toggleMusic() {
-            if (music.paused) {
-                music.play();
-                document.getElementById("musicToggle").innerText = "⏸";
-            } else {
-                music.pause();
-                document.getElementById("musicToggle").innerText = "▶️";
+        // Mecánica: El botón SI crece cuando intentas darle al NO
+        function crecerSi() {
+            const siBtn = document.getElementById("siBtn");
+            escalaSi += 0.3;
+            siBtn.style.transform = `scale(${escalaSi})`;
+            siBtn.style.boxShadow = `0 0 ${escalaSi * 20}px var(--rojo-brillante)`;
+            
+            // Si crece demasiado, empieza a vibrar de poder
+            if(escalaSi > 2) {
+                siBtn.style.animation = "pulse 0.5s infinite alternate";
             }
         }
 
-        function huirBoton() {
-            const btn = document.getElementById("noBtn");
-            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
-            btn.style.position = "fixed";
-            btn.style.left = x + "px";
-            btn.style.top = y + "px";
-        }
-
-        function mostrarExito() {
+        function aceptar() {
             document.getElementById("success-screen").style.display = "flex";
-            // Lluvia intensa de pétalos rojos extra al aceptar
-            for(let i=0; i<30; i++){
-                setTimeout(crearPetalo, i * 100);
-            }
         }
 
-        function cerrarExito() {
+        function regresar() {
             document.getElementById("success-screen").style.display = "none";
+            escalaSi = 1;
+            document.getElementById("siBtn").style.transform = `scale(1)`;
         }
 
         function crearPetalo() {
@@ -317,21 +223,13 @@
             petal.className = "rose-petal";
             petal.style.left = Math.random() * 100 + "vw";
             petal.style.animationDuration = (Math.random() * 3 + 4) + "s";
-            
-            // Mayoría negras, algunas rojo muy oscuro
-            if(Math.random() > 0.8) {
-                petal.style.background = "#4a0000";
-                petal.style.border = "1px solid #600000";
-            }
-            
             document.body.appendChild(petal);
             setTimeout(() => petal.remove(), 7000);
         }
-
-        // Generar pétalos continuamente
-        setInterval(crearPetalo, 300);
+        setInterval(crearPetalo, 250);
     </script>
 </body>
 </html>
+
 
 
