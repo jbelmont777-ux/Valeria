@@ -14,7 +14,6 @@
             --negro-ebano: #0a0a0a;
         }
 
-        /* Pantalla de Entrada */
         #overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -32,21 +31,13 @@
             font-size: 1.2rem;
             letter-spacing: 4px;
             cursor: pointer;
-            transition: 0.5s;
         }
 
-        #startBtn:hover {
-            color: var(--rojo-sangre);
-            box-shadow: 0 0 20px var(--rojo-sangre);
-        }
-
-        /* PAPEL TAPIZ VICTORIANO OSCURO */
         body {
             margin: 0; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
             font-family: 'IM Fell DW Pica SC', serif; color: #d1d1d1; overflow-x: hidden;
             background-color: var(--rojo-victoriano);
-            /* Patrón Damasco Victoriano */
             background-image: 
                 radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.9)),
                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-5-10-15-10-20 0-5 10-5 20 5 30 5 5 10 10 15 20 5-10 10-15 15-20 10-10 10-20 5-30-5-10-15-10-20 0zM50 80c-2-5-5-5-7 0-2 5-2 10 2 15 2 2 5 5 5 10 0-5 3-8 5-10 4-5 4-10 2-15-2-5-5-5-7 0z' fill='%232a0000' fill-opacity='0.6'/%3E%3C/svg%3E");
@@ -68,10 +59,8 @@
             color: #eee;
             text-shadow: 3px 3px 0px var(--rojo-victoriano);
             margin: 0 0 20px 0;
-            letter-spacing: -2px;
         }
 
-        /* MARCO DE CUADRO GÓTICO ORNAMENTADO */
         .gothic-picture-frame {
             width: 250px; height: 330px;
             margin: 0 auto 30px;
@@ -82,18 +71,12 @@
             position: relative;
         }
 
-        .gothic-picture-frame::before {
-            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
-            border: 1px solid var(--dorado-viejo); pointer-events: none;
-        }
-
         .gothic-picture-frame img {
             width: 100%; height: 100%;
             object-fit: cover;
             filter: grayscale(30%) contrast(1.2) brightness(0.7);
         }
 
-        /* Reproductor y Créditos */
         .player-info {
             position: fixed; top: 15px; left: 15px;
             display: flex; align-items: center; gap: 12px;
@@ -101,32 +84,33 @@
             border-radius: 5px; border: 1px solid var(--dorado-viejo); z-index: 500;
         }
 
-        .song-credits {
-            font-size: 0.8rem; text-align: left; color: #999;
-            font-family: 'Trade Winds', cursive;
-        }
+        .song-credits { font-size: 0.8rem; text-align: left; color: #999; font-family: 'Trade Winds', cursive; }
+        #musicToggle { background: none; border: 1px solid var(--dorado-viejo); color: var(--dorado-viejo); cursor: pointer; width: 35px; height: 35px; }
 
-        #musicToggle {
-            background: none; border: 1px solid var(--dorado-viejo);
-            color: var(--dorado-viejo); cursor: pointer;
-            width: 35px; height: 35px; font-size: 1rem;
-        }
-
-        .poem {
-            font-size: 1.25rem; line-height: 1.7; color: #bbb;
-            margin: 25px 0; font-style: italic;
-        }
-
+        .poem { font-size: 1.25rem; line-height: 1.7; color: #bbb; margin: 25px 0; font-style: italic; }
         .poem span { color: #fff; text-shadow: 0 0 5px var(--rojo-sangre); }
 
-        /* Botones Persuasivos */
+        /* PREGUNTA BRILLANTE */
+        .question {
+            font-family: 'Metal Mania', cursive;
+            font-size: 1.8rem;
+            margin: 30px 0;
+            color: #fff;
+            text-shadow: 0 0 10px #fff, 0 0 20px var(--rojo-sangre);
+            animation: glowPulse 2s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            from { text-shadow: 0 0 5px #fff, 0 0 10px var(--rojo-sangre); opacity: 0.8; }
+            to { text-shadow: 0 0 15px #fff, 0 0 30px var(--rojo-sangre), 0 0 40px var(--rojo-sangre); opacity: 1; }
+        }
+
         .btn-si {
             background: var(--rojo-sangre);
             color: #eee; border: 1px solid var(--dorado-viejo);
             padding: 15px 40px; cursor: pointer;
             font-family: 'Metal Mania', cursive; font-size: 1.4rem;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         #noBtn {
@@ -135,27 +119,21 @@
             cursor: pointer; margin-left: 15px;
         }
 
-        /* PARTÍCULAS Y ROSAS NEGRAS */
         .rose-petal {
-            position: fixed; top: -50px;
-            background: #000; width: 15px; height: 15px;
-            border-radius: 50% 0 50% 0; pointer-events: none;
-            opacity: 0.8; z-index: 5; animation: fall linear infinite;
+            position: fixed; top: -50px; background: #000; width: 15px; height: 15px;
+            border-radius: 50% 0 50% 0; pointer-events: none; opacity: 0.8; z-index: 5; animation: fall linear infinite;
         }
 
         .dust {
-            position: fixed; background: white; border-radius: 50%;
-            opacity: 0.2; pointer-events: none; animation: float linear infinite;
+            position: fixed; background: white; border-radius: 50%; opacity: 0.2; pointer-events: none; animation: float linear infinite;
         }
 
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
         @keyframes float { to { transform: translateY(-110vh); } }
 
-        /* Pantalla de Éxito */
         #success-screen {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; display: none; flex-direction: column;
-            align-items: center; justify-content: center; z-index: 2000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000;
+            display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 2000;
         }
     </style>
 </head>
@@ -191,14 +169,16 @@
             acepto mi condena por un segundo en tu mirada.
         </div>
 
-        <div style="margin-top: 30px;">
+        <div class="question">¿Quieres ser mi San Valentín?</div>
+
+        <div style="margin-top: 10px;">
             <button class="btn-si" id="siBtn" onclick="aceptar()">SÍ, ACEPTO</button>
             <button id="noBtn" onmouseover="crecerSi()" onclick="crecerSi()">No</button>
         </div>
     </div>
 
     <div id="success-screen">
-        <div style="font-family: 'Metal Mania'; color:var(--rojo-sangre); font-size:3rem; text-align:center; text-shadow: 0 0 20px #000;">
+        <div style="font-family: 'Metal Mania'; color:var(--rojo-sangre); font-size:3rem; text-align:center;">
             SABÍA QUE EL DESTINO<br>YA LO HABÍA DECIDIDO... 🖤
         </div>
         <button onclick="regresar()" style="margin-top:50px; background:none; border:1px solid #333; color:#555; cursor:pointer; font-family:serif; letter-spacing:2px;">REGRESAR</button>
@@ -226,17 +206,13 @@
             siBtn.style.zIndex = "100";
         }
 
-        function aceptar() {
-            document.getElementById("success-screen").style.display = "flex";
-        }
-
-        function regresar() {
-            document.getElementById("success-screen").style.display = "none";
-            escalaSi = 1;
+        function aceptar() { document.getElementById("success-screen").style.display = "flex"; }
+        function regresar() { 
+            document.getElementById("success-screen").style.display = "none"; 
+            escalaSi = 1; 
             document.getElementById("siBtn").style.transform = `scale(1)`;
         }
 
-        // Lluvia de rosas negras
         function crearPetalo() {
             const petal = document.createElement("div");
             petal.className = "rose-petal";
@@ -246,7 +222,6 @@
             setTimeout(() => petal.remove(), 8000);
         }
 
-        // Partículas de polvo/nieve
         function crearPolvo() {
             const d = document.createElement("div");
             d.className = "dust";
