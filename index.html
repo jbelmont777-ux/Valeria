@@ -2,161 +2,156 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Valeria | Mi Eclipse Eterno</title>
+    <title>Valeria | Eclipse Eterno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         :root {
-            --deep-red: #4a0404;
-            --goth-purple: #1a001a;
-            --accent: #ff0033;
-            --text-gold: #f3e6ff;
+            --sangre: #800000;
+            --sangre-brillante: #ff0000;
+            --oscuro: #0a0a0a;
+            --dorado-apagado: #c0c0c0;
         }
 
         body {
             margin: 0;
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             font-family: 'Georgia', serif;
-            color: var(--text-gold);
-            text-align: center;
-            /* Fondo generado por código: Efecto de profundidad gótica */
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(74, 4, 4, 0.4), transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(26, 0, 26, 0.8), transparent 50%),
-                linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
-            background-attachment: fixed;
+            color: white;
             overflow-x: hidden;
+            /* Fondo de papel tapiz gótico generado con CSS */
+            background-color: #000;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(128, 0, 0, 0.2), transparent),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%231a1a1a' fill-opacity='0.4'%3E%3Cpath d='M40 0l-4 4-8-8-8 8-4-4-4 4 8 8-8 8 4 4 4-4 8 8 8-8 4 4 4-4-8-8 8-8-4-4z'/%3E%3C/g%3E%3C/svg%3E");
         }
 
-        .container {
-            padding: 40px 20px;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 0, 51, 0.2);
-            border-radius: 20px;
-            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-            max-width: 900px;
-            margin: 20px;
-        }
-
-        .title {
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            margin-bottom: 10px;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: var(--accent);
-            text-shadow: 0 0 15px rgba(255, 0, 51, 0.7), 2px 2px 2px black;
-            animation: fadeIn 3s ease-in;
-        }
-
-        .photo-frame {
+        .main-card {
+            background: rgba(10, 10, 10, 0.95);
+            padding: 40px;
+            border-radius: 5px;
+            border: 2px solid var(--sangre);
+            box-shadow: 0 0 40px rgba(0, 0, 0, 1), inset 0 0 20px rgba(128, 0, 0, 0.3);
+            max-width: 600px;
+            width: 90%;
             position: relative;
-            width: 280px;
-            height: 380px;
-            margin: 30px auto;
-            border: 2px solid var(--accent);
-            padding: 10px;
+            z-index: 10;
+            text-align: center;
+        }
+
+        /* Marco Gótico para la foto */
+        .gothic-frame {
+            position: relative;
+            width: 260px;
+            height: 350px;
+            margin: 0 auto 30px;
+            padding: 15px;
+            background: var(--sangre);
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+            clip-path: polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10% );
+        }
+
+        .inner-frame {
+            width: 100%;
+            height: 100%;
             background: #000;
-            box-shadow: 0 0 30px rgba(255, 0, 51, 0.4);
-            transform: rotate(-2deg);
-            transition: 0.5s;
+            overflow: hidden;
+            border: 1px solid var(--dorado-apagado);
         }
 
-        .photo-frame:hover {
-            transform: rotate(0deg) scale(1.05);
-            box-shadow: 0 0 50px var(--accent);
-        }
-
-        .photo-frame img {
+        .inner-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: sepia(0.3) contrast(1.1) brightness(0.8);
+            filter: grayscale(40%) contrast(1.2) brightness(0.7);
         }
 
-        .poem {
-            font-size: 1.4rem;
-            line-height: 2;
-            margin: 40px 0;
-            color: #d1b3ff;
-            text-shadow: 1px 1px 3px black;
-        }
-
-        .poem span {
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        #musicBtn {
-            background: transparent;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            padding: 12px 30px;
-            border-radius: 0;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.4s;
+        .title {
+            font-size: 3rem;
+            color: var(--sangre-brillante);
+            text-shadow: 2px 2px 5px #000, 0 0 15px var(--sangre);
+            letter-spacing: 4px;
             margin-bottom: 20px;
         }
 
-        #musicBtn:hover {
-            background: var(--accent);
-            color: white;
-            box-shadow: 0 0 20px var(--accent);
+        .poem {
+            font-style: italic;
+            line-height: 1.8;
+            color: #ccc;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
 
-        .question {
-            font-size: 2rem;
-            margin: 40px 0;
-            color: var(--text-gold);
-        }
+        .poem span { color: var(--sangre-brillante); }
+
+        .btn-container { display: flex; justify-content: center; gap: 20px; align-items: center; }
 
         .btn-si {
-            background: var(--deep-red);
+            background: var(--sangre);
             color: white;
-            padding: 15px 50px;
-            font-size: 1.2rem;
-            border: 1px solid var(--accent);
+            border: 1px solid var(--sangre-brillante);
+            padding: 12px 35px;
             cursor: pointer;
-            box-shadow: 0 0 15px var(--deep-red);
+            font-family: 'Georgia', serif;
+            font-size: 1.1rem;
+            box-shadow: 0 0 10px var(--sangre);
             transition: 0.3s;
         }
 
-        .btn-si:hover {
-            transform: scale(1.1);
-            background: var(--accent);
-        }
+        .btn-si:hover { transform: scale(1.1); box-shadow: 0 0 20px var(--sangre-brillante); }
 
         #noBtn {
             background: transparent;
-            color: #444;
-            border: 1px solid #222;
-            padding: 10px 20px;
-            margin-left: 20px;
+            color: #555;
+            border: 1px solid #333;
+            padding: 8px 20px;
             cursor: pointer;
         }
 
-        /* Partículas de ceniza roja */
-        .particle {
+        /* Animación de pétalos de Rosa Negra */
+        .rose-petal {
             position: fixed;
-            background: var(--accent);
-            border-radius: 50%;
+            top: -50px;
+            background: #000;
+            width: 15px;
+            height: 15px;
+            border-radius: 50% 0 50% 0;
+            border: 1px solid #1a0000;
+            opacity: 0.8;
             pointer-events: none;
-            opacity: 0.5;
-            animation: drift linear infinite;
+            z-index: 1;
+            animation: fall linear infinite;
         }
 
-        @keyframes drift {
-            to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(540deg); }
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; } to { opacity: 1; }
+        /* Pantalla de Aceptación */
+        #success-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: black;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            animation: fadeIn 2s forwards;
         }
+
+        .success-message {
+            color: var(--sangre-brillante);
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 0 0 20px var(--sangre);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     </style>
 </head>
 <body>
@@ -165,82 +160,81 @@
         <source src="Entre lo dulce y lo real.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="container">
-        <button id="musicBtn" onclick="toggleMusic()">🔊 Escuchar la esencia</button>
+    <div class="main-card">
+        <h1 class="title">Valeria</h1>
         
-        <div class="title">Valeria</div>
-        
-        <div class="photo-frame">
-            <img src="foto1.jpeg" alt="Valeria">
+        <div class="gothic-frame">
+            <div class="inner-frame">
+                <img src="foto1.jpeg" alt="Valeria">
+            </div>
         </div>
 
         <div class="poem">
             Entre lo <span>dulce</span> de tu risa y lo <span>real</span> de mi deseo,<br>
             se dibuja un eclipse donde solo tú existes.<br><br>
-            Eres el secreto mejor guardado de la noche,<br>
-            la tinta negra con la que escribo mi destino.<br><br>
-            Si el amor es un abismo,<br>
+            Si el amor es un abismo de sombras,<br>
             caeré en el tuyo sin pedir absolución.
         </div>
 
-        <div class="question">¿Aceptarías ser mi San Valentín?</div>
+        <p style="margin-bottom:20px; letter-spacing: 2px;">¿Aceptarías ser mi San Valentín?</p>
 
-        <div style="margin-bottom: 40px;">
-            <button class="btn-si" onclick="celebrar()">Sí, acepto</button>
-            <button id="noBtn" onmouseover="huir()">No</button>
+        <div class="btn-container">
+            <button class="btn-si" onclick="aceptar()">Sí, acepto</button>
+            <button id="noBtn" onmouseover="moverNo()">No</button>
         </div>
     </div>
 
+    <div id="success-screen">
+        <div class="success-message">
+            Sabía que el destino<br>ya lo había decidido... 🖤
+        </div>
+        <p style="margin-top: 20px; color: #444;">Tu eclipse eterno comienza ahora.</p>
+    </div>
+
     <script>
-        function toggleMusic() {
-            const music = document.getElementById("bgMusic");
-            const btn = document.getElementById("musicBtn");
-            if (music.paused) {
-                music.play();
-                btn.innerText = "⏸ Detener el tiempo";
-            } else {
-                music.pause();
-                btn.innerText = "🔊 Escuchar la esencia";
+        // Música
+        let musicStarted = false;
+        function playMusic() {
+            if(!musicStarted) {
+                document.getElementById("bgMusic").play();
+                musicStarted = true;
             }
         }
+        document.body.addEventListener('click', playMusic);
 
-        function huir() {
+        // Botón que huye
+        function moverNo() {
             const btn = document.getElementById("noBtn");
             btn.style.position = "fixed";
             btn.style.left = Math.random() * 80 + "%";
             btn.style.top = Math.random() * 80 + "%";
         }
 
-        function celebrar() {
-            alert("Sabía que el destino ya lo había decidido… 🖤");
-            // Explosión de pétalos negros y rojos
+        // Acción al decir Sí
+        function aceptar() {
+            document.getElementById("success-screen").style.display = "flex";
+            // Crear una explosión de pétalos rojos extra
             for(let i=0; i<50; i++) {
-                crearParticula(true);
+                setTimeout(crearPetalo, i * 20);
             }
         }
 
-        function crearParticula(esCelebracion = false) {
-            const p = document.createElement("div");
-            p.className = "particle";
-            const size = Math.random() * 4 + 2 + "px";
-            p.style.width = size;
-            p.style.height = size;
-            p.style.left = Math.random() * 100 + "vw";
-            p.style.bottom = "-10px";
-            p.style.animationDuration = (Math.random() * 5 + 5) + "s";
+        // Lluvia de pétalos negros
+        function crearPetalo() {
+            const petal = document.createElement("div");
+            petal.className = "rose-petal";
+            petal.style.left = Math.random() * 100 + "vw";
+            petal.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            petal.style.opacity = Math.random();
+            // Algunos pétalos son rojo oscuro para dar variedad
+            if(Math.random() > 0.8) petal.style.background = "#330000";
             
-            if(esCelebracion) {
-                p.style.background = Math.random() > 0.5 ? "#ff0033" : "#000";
-                p.style.bottom = "50vh";
-                p.style.left = "50vw";
-                p.style.transform = `translate(${(Math.random()-0.5)*100}vw, ${(Math.random()-0.5)*100}vh)`;
-            }
-
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 8000);
+            document.body.appendChild(petal);
+            setTimeout(() => petal.remove(), 7000);
         }
 
-        setInterval(() => crearParticula(), 300);
+        setInterval(crearPetalo, 300);
     </script>
 </body>
 </html>
+
