@@ -90,7 +90,6 @@
         .poem { font-size: 1.25rem; line-height: 1.7; color: #bbb; margin: 25px 0; font-style: italic; }
         .poem span { color: #fff; text-shadow: 0 0 5px var(--rojo-sangre); }
 
-        /* PREGUNTA BRILLANTE */
         .question {
             font-family: 'Metal Mania', cursive;
             font-size: 1.8rem;
@@ -105,6 +104,16 @@
             to { text-shadow: 0 0 15px #fff, 0 0 30px var(--rojo-sangre), 0 0 40px var(--rojo-sangre); opacity: 1; }
         }
 
+        /* Contenedor de botones para centrado dinámico */
+        .buttons-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+            min-height: 60px;
+        }
+
         .btn-si {
             background: var(--rojo-sangre);
             color: #eee; border: 1px solid var(--dorado-viejo);
@@ -116,7 +125,8 @@
         #noBtn {
             background: transparent; color: #555;
             border: 1px solid #222; padding: 10px 20px;
-            cursor: pointer; margin-left: 15px;
+            cursor: pointer;
+            transition: opacity 0.3s;
         }
 
         .rose-petal {
@@ -171,9 +181,9 @@
 
         <div class="question">¿Quieres ser mi San Valentín?</div>
 
-        <div style="margin-top: 10px;">
+        <div class="buttons-wrapper">
             <button class="btn-si" id="siBtn" onclick="aceptar()">SÍ, ACEPTO</button>
-            <button id="noBtn" onmouseover="crecerSi()" onclick="crecerSi()">No</button>
+            <button id="noBtn" onclick="eliminarNo()" onmouseover="crecerSi()">No</button>
         </div>
     </div>
 
@@ -201,16 +211,23 @@
 
         function crecerSi() {
             const siBtn = document.getElementById("siBtn");
-            escalaSi += 0.25;
+            escalaSi += 0.1;
             siBtn.style.transform = `scale(${escalaSi})`;
-            siBtn.style.zIndex = "100";
+        }
+
+        function eliminarNo() {
+            const noBtn = document.getElementById("noBtn");
+            noBtn.style.display = "none"; // Desaparece al clic
+            // El contenedor flex centrará automáticamente el botón SI
         }
 
         function aceptar() { document.getElementById("success-screen").style.display = "flex"; }
+        
         function regresar() { 
             document.getElementById("success-screen").style.display = "none"; 
             escalaSi = 1; 
             document.getElementById("siBtn").style.transform = `scale(1)`;
+            document.getElementById("noBtn").style.display = "inline-block"; // Reaparece al volver
         }
 
         function crearPetalo() {
