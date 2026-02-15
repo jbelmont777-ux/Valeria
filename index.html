@@ -8,136 +8,153 @@
     
     <style>
         :root {
-            --rojo-claro: #cc0000;
-            --rojo-brillante: #ff1a1a;
-            --dorado-viejo: #4a3c22;
-            --negro: #000000;
+            --rojo-victoriano: #4d0000;
+            --rojo-sangre: #800000;
+            --dorado-viejo: #5c4b2c;
+            --negro-ebano: #0a0a0a;
         }
 
+        /* Pantalla de Entrada */
         #overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
+            background: var(--negro-ebano);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 1000; transition: 1.5s;
         }
 
         #startBtn {
             background: transparent;
-            color: var(--rojo-brillante);
-            border: 2px solid var(--rojo-claro);
-            padding: 20px 40px;
+            color: #ccc;
+            border: 1px solid var(--dorado-viejo);
+            padding: 15px 35px;
             font-family: 'Metal Mania', cursive;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
             cursor: pointer;
+            transition: 0.5s;
         }
 
-        /* FONDO MÁS CLARO PARA RESALTAR PÉTALOS NEGROS */
+        #startBtn:hover {
+            color: var(--rojo-sangre);
+            box-shadow: 0 0 20px var(--rojo-sangre);
+        }
+
+        /* PAPEL TAPIZ VICTORIANO OSCURO */
         body {
             margin: 0; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            font-family: 'IM Fell DW Pica SC', serif; color: #1a1a1a; overflow-x: hidden;
-            background-color: var(--rojo-claro);
+            font-family: 'IM Fell DW Pica SC', serif; color: #d1d1d1; overflow-x: hidden;
+            background-color: var(--rojo-victoriano);
+            /* Patrón Damasco Victoriano */
             background-image: 
-                radial-gradient(circle, rgba(255,255,255,0.2), rgba(0,0,0,0.2)),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 0 C45 20 55 20 80 0 L80 80 C55 60 45 60 40 80 C35 60 25 60 0 80 L0 0 C25 20 35 20 40 0' fill='%23990000' fill-opacity='0.5'/%3E%3C/svg%3E");
+                radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.9)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 20c-5-10-15-10-20 0-5 10-5 20 5 30 5 5 10 10 15 20 5-10 10-15 15-20 10-10 10-20 5-30-5-10-15-10-20 0zM50 80c-2-5-5-5-7 0-2 5-2 10 2 15 2 2 5 5 5 10 0-5 3-8 5-10 4-5 4-10 2-15-2-5-5-5-7 0z' fill='%232a0000' fill-opacity='0.6'/%3E%3C/svg%3E");
             background-attachment: fixed;
         }
 
         .main-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 40px 30px;
-            border: 4px solid #1a1a1a;
-            outline: 2px solid var(--dorado-viejo);
-            outline-offset: -15px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            max-width: 550px; width: 90%; text-align: center;
+            background: rgba(10, 10, 10, 0.85);
+            padding: 50px 30px;
+            border: 2px solid var(--dorado-viejo);
+            box-shadow: 0 0 100px #000;
+            max-width: 500px; width: 90%; text-align: center;
             position: relative; z-index: 10;
         }
 
         .title {
             font-family: 'Metal Mania', cursive;
-            font-size: 5rem;
-            color: var(--negro);
-            text-shadow: 2px 2px 0px var(--rojo-brillante);
+            font-size: 4.5rem;
+            color: #eee;
+            text-shadow: 3px 3px 0px var(--rojo-victoriano);
             margin: 0 0 20px 0;
-            transform: skewY(-2deg);
+            letter-spacing: -2px;
         }
 
+        /* MARCO DE CUADRO GÓTICO ORNAMENTADO */
         .gothic-picture-frame {
-            width: 260px; height: 340px;
+            width: 250px; height: 330px;
             margin: 0 auto 30px;
-            border: 12px solid #1a1a1a;
-            outline: 3px solid var(--dorado-viejo);
-            box-shadow: 10px 10px 30px rgba(0,0,0,0.6);
-            background: #000;
+            border: 15px solid #1a1a1a;
+            border-image: linear-gradient(45deg, #000, #333, #1a1a1a, #000) 1;
+            outline: 2px solid var(--dorado-viejo);
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+            position: relative;
+        }
+
+        .gothic-picture-frame::before {
+            content: ''; position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 1px solid var(--dorado-viejo); pointer-events: none;
         }
 
         .gothic-picture-frame img {
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(20%) contrast(1.1);
+            filter: grayscale(30%) contrast(1.2) brightness(0.7);
         }
 
+        /* Reproductor y Créditos */
         .player-info {
-            position: fixed; top: 15px; right: 15px;
-            display: flex; align-items: center; gap: 10px;
-            background: rgba(0,0,0,0.8); padding: 8px 15px;
-            border-radius: 20px; border: 1px solid var(--dorado-viejo); z-index: 500;
+            position: fixed; top: 15px; left: 15px;
+            display: flex; align-items: center; gap: 12px;
+            background: rgba(0,0,0,0.7); padding: 10px 20px;
+            border-radius: 5px; border: 1px solid var(--dorado-viejo); z-index: 500;
         }
 
         .song-credits {
-            font-size: 0.7rem; text-align: right; color: #eee;
+            font-size: 0.8rem; text-align: left; color: #999;
             font-family: 'Trade Winds', cursive;
         }
 
         #musicToggle {
-            background: none; border: 1px solid var(--rojo-brillante);
-            color: var(--rojo-brillante); cursor: pointer; border-radius: 50%;
-            width: 30px; height: 30px;
+            background: none; border: 1px solid var(--dorado-viejo);
+            color: var(--dorado-viejo); cursor: pointer;
+            width: 35px; height: 35px; font-size: 1rem;
         }
 
         .poem {
-            font-size: 1.3rem; line-height: 1.6; color: var(--negro);
-            margin: 20px 0; font-weight: bold;
+            font-size: 1.25rem; line-height: 1.7; color: #bbb;
+            margin: 25px 0; font-style: italic;
         }
 
-        .poem span { color: var(--rojo-claro); text-decoration: underline; }
+        .poem span { color: #fff; text-shadow: 0 0 5px var(--rojo-sangre); }
 
+        /* Botones Persuasivos */
         .btn-si {
-            background: var(--negro); color: white;
-            border: 1px solid var(--dorado-viejo);
-            padding: 12px 35px; cursor: pointer;
+            background: var(--rojo-sangre);
+            color: #eee; border: 1px solid var(--dorado-viejo);
+            padding: 15px 40px; cursor: pointer;
             font-family: 'Metal Mania', cursive; font-size: 1.4rem;
-            transition: 0.3s;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
 
         #noBtn {
-            background: transparent; color: #333;
-            border: 1px solid #1a1a1a; padding: 8px 20px;
-            cursor: pointer; margin-left: 10px;
+            background: transparent; color: #555;
+            border: 1px solid #222; padding: 10px 20px;
+            cursor: pointer; margin-left: 15px;
         }
 
-        /* ROSAS NEGRAS Y PARTÍCULAS */
+        /* PARTÍCULAS Y ROSAS NEGRAS */
         .rose-petal {
             position: fixed; top: -50px;
-            background: #000; width: 16px; height: 16px;
+            background: #000; width: 15px; height: 15px;
             border-radius: 50% 0 50% 0; pointer-events: none;
-            z-index: 5; animation: fall linear infinite;
+            opacity: 0.8; z-index: 5; animation: fall linear infinite;
         }
 
-        .particle {
+        .dust {
             position: fixed; background: white; border-radius: 50%;
-            opacity: 0.5; pointer-events: none; animation: float linear infinite;
+            opacity: 0.2; pointer-events: none; animation: float linear infinite;
         }
 
         @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
         @keyframes float { to { transform: translateY(-110vh); } }
 
+        /* Pantalla de Éxito */
         #success-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: black; display: none; flex-direction: column;
+            background: #000; display: none; flex-direction: column;
             align-items: center; justify-content: center; z-index: 2000;
         }
     </style>
@@ -149,11 +166,11 @@
     </div>
 
     <div class="player-info">
+        <button id="musicToggle" onclick="toggleMusic()">⏸</button>
         <div class="song-credits">
             Entre lo dulce y lo real<br>
-            <span style="color:var(--rojo-brillante)">Munnin Krouce</span>
+            <span style="color:var(--dorado-viejo)">Munnin Krouce</span>
         </div>
-        <button id="musicToggle" onclick="toggleMusic()">⏸</button>
     </div>
 
     <audio id="bgMusic" loop>
@@ -174,17 +191,17 @@
             acepto mi condena por un segundo en tu mirada.
         </div>
 
-        <div>
+        <div style="margin-top: 30px;">
             <button class="btn-si" id="siBtn" onclick="aceptar()">SÍ, ACEPTO</button>
             <button id="noBtn" onmouseover="crecerSi()" onclick="crecerSi()">No</button>
         </div>
     </div>
 
     <div id="success-screen">
-        <div style="font-family: 'Metal Mania'; color:white; font-size:3rem; text-align:center;">
+        <div style="font-family: 'Metal Mania'; color:var(--rojo-sangre); font-size:3rem; text-align:center; text-shadow: 0 0 20px #000;">
             SABÍA QUE EL DESTINO<br>YA LO HABÍA DECIDIDO... 🖤
         </div>
-        <button onclick="regresar()" style="margin-top:40px; background:none; border:1px solid #333; color:#555; cursor:pointer;">REGRESAR</button>
+        <button onclick="regresar()" style="margin-top:50px; background:none; border:1px solid #333; color:#555; cursor:pointer; font-family:serif; letter-spacing:2px;">REGRESAR</button>
     </div>
 
     <script>
@@ -204,45 +221,46 @@
 
         function crecerSi() {
             const siBtn = document.getElementById("siBtn");
-            escalaSi += 0.3;
+            escalaSi += 0.25;
             siBtn.style.transform = `scale(${escalaSi})`;
+            siBtn.style.zIndex = "100";
         }
 
-        function aceptar() { document.getElementById("success-screen").style.display = "flex"; }
-        function regresar() { 
-            document.getElementById("success-screen").style.display = "none"; 
-            escalaSi = 1; 
+        function aceptar() {
+            document.getElementById("success-screen").style.display = "flex";
+        }
+
+        function regresar() {
+            document.getElementById("success-screen").style.display = "none";
+            escalaSi = 1;
             document.getElementById("siBtn").style.transform = `scale(1)`;
         }
 
+        // Lluvia de rosas negras
         function crearPetalo() {
             const petal = document.createElement("div");
             petal.className = "rose-petal";
             petal.style.left = Math.random() * 100 + "vw";
-            petal.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            petal.style.animationDuration = (Math.random() * 4 + 4) + "s";
             document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 7000);
+            setTimeout(() => petal.remove(), 8000);
         }
 
-        function crearParticula() {
-            const p = document.createElement("div");
-            p.className = "particle";
-            const size = Math.random() * 3 + "px";
-            p.style.width = size; p.style.height = size;
-            p.style.left = Math.random() * 100 + "vw";
-            p.style.bottom = "-10px";
-            p.style.animationDuration = (Math.random() * 5 + 5) + "s";
-            document.body.appendChild(p);
-            setTimeout(() => p.remove(), 8000);
+        // Partículas de polvo/nieve
+        function crearPolvo() {
+            const d = document.createElement("div");
+            d.className = "dust";
+            const size = Math.random() * 2 + "px";
+            d.style.width = size; d.style.height = size;
+            d.style.left = Math.random() * 100 + "vw";
+            d.style.bottom = "-10px";
+            d.style.animationDuration = (Math.random() * 6 + 6) + "s";
+            document.body.appendChild(d);
+            setTimeout(() => d.remove(), 10000);
         }
 
-        setInterval(crearPetalo, 300);
-        setInterval(crearParticula, 200);
+        setInterval(crearPetalo, 400);
+        setInterval(crearPolvo, 300);
     </script>
 </body>
 </html>
-
-
-
-
-
