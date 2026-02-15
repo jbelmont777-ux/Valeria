@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Valeria | Mi Eclipse Eterno</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --deep-red: #4a0404;
+            --goth-purple: #1a001a;
+            --accent: #ff0033;
+            --text-gold: #f3e6ff;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Georgia', serif;
+            color: var(--text-gold);
+            text-align: center;
+            /* Fondo generado por código: Efecto de profundidad gótica */
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(74, 4, 4, 0.4), transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(26, 0, 26, 0.8), transparent 50%),
+                linear-gradient(135deg, #000000 0%, #1a0000 50%, #000000 100%);
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        .container {
+            padding: 40px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 0, 51, 0.2);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+            max-width: 900px;
+            margin: 20px;
+        }
+
+        .title {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--accent);
+            text-shadow: 0 0 15px rgba(255, 0, 51, 0.7), 2px 2px 2px black;
+            animation: fadeIn 3s ease-in;
+        }
+
+        .photo-frame {
+            position: relative;
+            width: 280px;
+            height: 380px;
+            margin: 30px auto;
+            border: 2px solid var(--accent);
+            padding: 10px;
+            background: #000;
+            box-shadow: 0 0 30px rgba(255, 0, 51, 0.4);
+            transform: rotate(-2deg);
+            transition: 0.5s;
+        }
+
+        .photo-frame:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 0 0 50px var(--accent);
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(0.3) contrast(1.1) brightness(0.8);
+        }
+
+        .poem {
+            font-size: 1.4rem;
+            line-height: 2;
+            margin: 40px 0;
+            color: #d1b3ff;
+            text-shadow: 1px 1px 3px black;
+        }
+
+        .poem span {
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        #musicBtn {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 12px 30px;
+            border-radius: 0;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            margin-bottom: 20px;
+        }
+
+        #musicBtn:hover {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 0 20px var(--accent);
+        }
+
+        .question {
+            font-size: 2rem;
+            margin: 40px 0;
+            color: var(--text-gold);
+        }
+
+        .btn-si {
+            background: var(--deep-red);
+            color: white;
+            padding: 15px 50px;
+            font-size: 1.2rem;
+            border: 1px solid var(--accent);
+            cursor: pointer;
+            box-shadow: 0 0 15px var(--deep-red);
+            transition: 0.3s;
+        }
+
+        .btn-si:hover {
+            transform: scale(1.1);
+            background: var(--accent);
+        }
+
+        #noBtn {
+            background: transparent;
+            color: #444;
+            border: 1px solid #222;
+            padding: 10px 20px;
+            margin-left: 20px;
+            cursor: pointer;
+        }
+
+        /* Partículas de ceniza roja */
+        .particle {
+            position: fixed;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.5;
+            animation: drift linear infinite;
+        }
+
+        @keyframes drift {
+            to { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="Entre lo dulce y lo real.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        <button id="musicBtn" onclick="toggleMusic()">🔊 Escuchar la esencia</button>
+        
+        <div class="title">Valeria</div>
+        
+        <div class="photo-frame">
+            <img src="foto1.jpeg" alt="Valeria">
+        </div>
+
+        <div class="poem">
+            Entre lo <span>dulce</span> de tu risa y lo <span>real</span> de mi deseo,<br>
+            se dibuja un eclipse donde solo tú existes.<br><br>
+            Eres el secreto mejor guardado de la noche,<br>
+            la tinta negra con la que escribo mi destino.<br><br>
+            Si el amor es un abismo,<br>
+            caeré en el tuyo sin pedir absolución.
+        </div>
+
+        <div class="question">¿Aceptarías ser mi San Valentín?</div>
+
+        <div style="margin-bottom: 40px;">
+            <button class="btn-si" onclick="celebrar()">Sí, acepto</button>
+            <button id="noBtn" onmouseover="huir()">No</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleMusic() {
+            const music = document.getElementById("bgMusic");
+            const btn = document.getElementById("musicBtn");
+            if (music.paused) {
+                music.play();
+                btn.innerText = "⏸ Detener el tiempo";
+            } else {
+                music.pause();
+                btn.innerText = "🔊 Escuchar la esencia";
+            }
+        }
+
+        function huir() {
+            const btn = document.getElementById("noBtn");
+            btn.style.position = "fixed";
+            btn.style.left = Math.random() * 80 + "%";
+            btn.style.top = Math.random() * 80 + "%";
+        }
+
+        function celebrar() {
+            alert("Sabía que el destino ya lo había decidido… 🖤");
+            // Explosión de pétalos negros y rojos
+            for(let i=0; i<50; i++) {
+                crearParticula(true);
+            }
+        }
+
+        function crearParticula(esCelebracion = false) {
+            const p = document.createElement("div");
+            p.className = "particle";
+            const size = Math.random() * 4 + 2 + "px";
+            p.style.width = size;
+            p.style.height = size;
+            p.style.left = Math.random() * 100 + "vw";
+            p.style.bottom = "-10px";
+            p.style.animationDuration = (Math.random() * 5 + 5) + "s";
+            
+            if(esCelebracion) {
+                p.style.background = Math.random() > 0.5 ? "#ff0033" : "#000";
+                p.style.bottom = "50vh";
+                p.style.left = "50vw";
+                p.style.transform = `translate(${(Math.random()-0.5)*100}vw, ${(Math.random()-0.5)*100}vh)`;
+            }
+
+            document.body.appendChild(p);
+            setTimeout(() => p.remove(), 8000);
+        }
+
+        setInterval(() => crearParticula(), 300);
+    </script>
+</body>
+</html>
