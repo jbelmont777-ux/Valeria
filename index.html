@@ -2,145 +2,140 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Valeria | Mi Eclipse Eterno</title>
+    <title>Valeria | Entre lo Dulce y lo Real</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Pirata+One&family=Creepster&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+DW+Pica+SC&family=Metal+Mania&family=Nosifer&family=Trade+Winds&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --rojo-brillante: #ff0000;
-            --rojo-oscuro: #8b0000;
-            --negro-puro: #000000;
-            --dorado-tenue: #a8a8a8;
+            --rojo-sangre: #660000;
+            --rojo-vivo: #990000;
+            --dorado-viejo: #4a3c22;
+            --negro-profundo: #050505;
         }
 
         /* Pantalla de Entrada */
         #overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--negro-puro);
+            background: var(--negro-profundo);
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             z-index: 1000; transition: 1.5s;
         }
 
         #startBtn {
             background: transparent;
-            color: var(--rojo-brillante);
-            border: 2px solid var(--rojo-oscuro);
+            color: var(--rojo-vivo);
+            border: 2px solid var(--dorado-viejo);
             padding: 20px 40px;
-            font-family: 'Pirata One', cursive;
-            font-size: 1.8rem;
-            letter-spacing: 5px;
+            font-family: 'Metal Mania', cursive;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
             cursor: pointer;
-            box-shadow: 0 0 20px var(--rojo-oscuro);
-            transition: 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        /* Fondo de Papel Tapiz Rojo Brillante */
+        /* Papel Tapiz Rojo Gótico */
         body {
             margin: 0; min-height: 100vh;
             display: flex; align-items: center; justify-content: center;
-            font-family: 'Georgia', serif; color: white; overflow-x: hidden;
-            background-color: #4b0000;
+            font-family: 'IM Fell DW Pica SC', serif; color: #d1d1d1; overflow-x: hidden;
+            background-color: #2a0000;
             background-image: 
-                radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.8)),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M50 0 C60 20 80 20 100 0 L100 100 C80 80 60 80 50 100 C40 80 20 80 0 100 L0 0 C20 20 40 20 50 0' fill='%23660000' fill-opacity='0.4'/%3E%3C/svg%3E");
+                radial-gradient(circle, rgba(0,0,0,0.4), rgba(0,0,0,0.9)),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0 C35 15 45 15 60 0 L60 60 C45 45 35 45 30 60 C25 45 15 45 0 60 L0 0 C15 15 25 15 30 0' fill='%231a0000' fill-opacity='0.6'/%3E%3C/svg%3E");
             background-attachment: fixed;
         }
 
         .main-card {
-            background: rgba(0, 0, 0, 0.9);
-            padding: 50px 30px;
-            border: 3px double var(--rojo-brillante);
-            box-shadow: 0 0 60px #000, inset 0 0 30px var(--rojo-oscuro);
-            max-width: 500px; width: 90%; text-align: center;
+            background: rgba(10, 2, 2, 0.92);
+            padding: 40px 30px;
+            border: 4px solid #1a1a1a;
+            outline: 2px solid var(--dorado-viejo);
+            outline-offset: -15px;
+            box-shadow: 0 0 100px #000;
+            max-width: 550px; width: 90%; text-align: center;
             position: relative; z-index: 10;
         }
 
-        /* Nombre Estilo Tim Burton */
+        /* Nombre estilo "Extraño Mundo de Jack" */
         .title {
-            font-family: 'UnifrakturMaguntia', cursive;
+            font-family: 'Metal Mania', cursive; /* Fuente alargada e irregular */
             font-size: 5rem;
-            color: var(--rojo-brillante);
-            text-shadow: 4px 4px 0px #000, 0 0 25px var(--rojo-brillante);
-            margin: 0 0 30px 0;
-            font-weight: normal;
+            color: #eee;
+            text-shadow: 3px 3px 0px var(--rojo-sangre);
+            margin: 0 0 20px 0;
+            letter-spacing: -2px;
+            transform: skewY(-2deg);
         }
 
-        /* Marco Gótico Avanzado */
-        .gothic-frame {
+        /* Marco de Cuadro Gótico */
+        .gothic-picture-frame {
             width: 260px; height: 340px;
             margin: 0 auto 30px;
+            border: 15px solid #1a1a1a;
+            border-image: linear-gradient(to bottom, #333, #000, #333) 1;
+            outline: 3px solid var(--dorado-viejo);
+            box-shadow: 10px 10px 30px rgba(0,0,0,0.8);
             position: relative;
-            background: var(--rojo-oscuro);
-            padding: 10px;
-            /* Forma de escudo gótico puntiagudo */
-            clip-path: polygon(50% 0%, 100% 10%, 100% 85%, 50% 100%, 0% 85%, 0% 10%);
-            border: 1px solid var(--rojo-brillante);
-        }
-
-        .inner-frame {
-            width: 100%; height: 100%;
             background: #000;
-            overflow: hidden;
-            clip-path: polygon(50% 2%, 98% 11%, 98% 84%, 50% 98%, 2% 84%, 2% 11%);
         }
 
-        .inner-frame img {
+        .gothic-picture-frame img {
             width: 100%; height: 100%;
             object-fit: cover;
-            filter: grayscale(10%) contrast(1.2) brightness(0.8);
+            filter: sepia(0.2) contrast(1.1) brightness(0.7);
+        }
+
+        /* Reproductor con créditos */
+        .player-info {
+            position: absolute; top: 15px; right: 15px;
+            display: flex; align-items: center; gap: 10px;
+            background: rgba(0,0,0,0.6); padding: 5px 15px;
+            border-radius: 20px; border: 1px solid var(--dorado-viejo);
+        }
+
+        .song-credits {
+            font-size: 0.75rem; text-align: right; line-height: 1.2;
+            color: #aaa; font-family: 'Trade Winds', cursive;
+        }
+
+        #musicToggle {
+            background: none; border: 1px solid var(--rojo-vivo);
+            color: var(--rojo-vivo); cursor: pointer; border-radius: 50%;
+            width: 30px; height: 30px; display: flex; align-items: center; justify-content: center;
         }
 
         .poem {
-            font-family: 'Pirata One', cursive;
-            font-size: 1.5rem;
-            line-height: 1.4;
-            color: #ddd;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
+            font-size: 1.2rem; line-height: 1.6; color: #bbb;
+            margin: 20px 0; font-style: italic;
         }
 
-        /* Botones y Mecánica */
-        .btn-container {
-            display: flex; flex-direction: column; align-items: center; gap: 20px;
-        }
-
+        /* Botones Persuasivos */
         .btn-si {
-            background: var(--rojo-brillante);
-            color: white;
-            border: 2px solid white;
-            padding: 15px 40px;
-            cursor: pointer;
-            font-family: 'Pirata One', cursive;
-            font-size: 1.5rem;
-            box-shadow: 0 0 20px var(--rojo-brillante);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 50;
+            background: var(--rojo-sangre);
+            color: white; border: 1px solid var(--dorado-viejo);
+            padding: 12px 35px; cursor: pointer;
+            font-family: 'Metal Mania', cursive; font-size: 1.4rem;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            margin-bottom: 20px;
         }
 
         #noBtn {
-            background: transparent;
-            color: #444;
-            border: 1px solid #222;
-            padding: 8px 20px;
-            cursor: pointer;
-            font-family: serif;
+            background: transparent; color: #444;
+            border: 1px solid #222; padding: 8px 20px;
+            cursor: pointer; margin-left: 10px; font-size: 0.9rem;
         }
 
-        /* Pétalos de Rosas Negras */
+        /* Rosas Negras */
         .rose-petal {
             position: fixed; top: -50px;
-            background: #000; width: 18px; height: 18px;
-            border-radius: 50% 0 50% 0;
-            box-shadow: inset -2px -2px 5px #1a0000;
-            pointer-events: none; z-index: 1;
+            background: #000; width: 14px; height: 14px;
+            border-radius: 50% 0 50% 0; pointer-events: none;
             animation: fall linear infinite;
         }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        @keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
-
-        /* Pantalla de Éxito */
         #success-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: black; display: none; flex-direction: column;
@@ -154,6 +149,14 @@
         <button id="startBtn" onclick="iniciar()">ENTRAR AL ECLIPSE</button>
     </div>
 
+    <div class="player-info">
+        <div class="song-credits">
+            Entre lo dulce y lo real<br>
+            <span style="color:var(--dorado-viejo)">Munnin Krouce</span>
+        </div>
+        <button id="musicToggle" onclick="toggleMusic()">⏸</button>
+    </div>
+
     <audio id="bgMusic" loop>
         <source src="entre_lo_dulce.mp3" type="audio/mpeg">
     </audio>
@@ -161,28 +164,26 @@
     <div class="main-card">
         <h1 class="title">Valeria</h1>
         
-        <div class="gothic-frame">
-            <div class="inner-frame">
-                <img src="foto1.jpeg" alt="Valeria">
-            </div>
+        <div class="gothic-picture-frame">
+            <img src="foto1.jpeg" alt="Valeria">
         </div>
 
         <div class="poem">
-            Entre lo <span style="color:var(--rojo-brillante)">dulce</span> de tu risa y lo <span style="color:var(--rojo-brillante)">real</span> de mi deseo...<br>
+            Entre lo <span style="color:white">dulce</span> de tu risa y lo <span style="color:white">real</span> de mi deseo...<br>
             Si el amor es un abismo, caeré en el tuyo sin pedir absolución.
         </div>
 
-        <div class="btn-container">
+        <div>
             <button class="btn-si" id="siBtn" onclick="aceptar()">SÍ, ACEPTO</button>
             <button id="noBtn" onmouseover="crecerSi()" onclick="crecerSi()">No</button>
         </div>
     </div>
 
     <div id="success-screen">
-        <div style="font-family: 'UnifrakturMaguntia'; color:red; font-size:4rem; text-align:center; text-shadow:0 0 30px red;">
-            Sabía que el destino<br>ya lo había decidido... 🖤
+        <div style="font-family: 'Metal Mania'; color:var(--rojo-vivo); font-size:3rem; text-align:center;">
+            SABÍA QUE EL DESTINO<br>YA LO HABÍA DECIDIDO... 🖤
         </div>
-        <button onclick="regresar()" style="margin-top:40px; background:none; border:1px solid #333; color:#555; cursor:pointer;">Regresar</button>
+        <button onclick="regresar()" style="margin-top:40px; background:none; border:1px solid #333; color:#555; cursor:pointer;">REGRESAR</button>
     </div>
 
     <script>
@@ -195,17 +196,21 @@
             setTimeout(() => { document.getElementById("overlay").style.display = "none"; }, 1000);
         }
 
-        // Mecánica: El botón SI crece cuando intentas darle al NO
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                document.getElementById("musicToggle").innerText = "⏸";
+            } else {
+                music.pause();
+                document.getElementById("musicToggle").innerText = "▶️";
+            }
+        }
+
         function crecerSi() {
             const siBtn = document.getElementById("siBtn");
-            escalaSi += 0.3;
+            escalaSi += 0.25;
             siBtn.style.transform = `scale(${escalaSi})`;
-            siBtn.style.boxShadow = `0 0 ${escalaSi * 20}px var(--rojo-brillante)`;
-            
-            // Si crece demasiado, empieza a vibrar de poder
-            if(escalaSi > 2) {
-                siBtn.style.animation = "pulse 0.5s infinite alternate";
-            }
+            siBtn.style.boxShadow = `0 0 ${escalaSi * 15}px var(--rojo-sangre)`;
         }
 
         function aceptar() {
@@ -222,14 +227,16 @@
             const petal = document.createElement("div");
             petal.className = "rose-petal";
             petal.style.left = Math.random() * 100 + "vw";
-            petal.style.animationDuration = (Math.random() * 3 + 4) + "s";
+            petal.style.animationDuration = (Math.random() * 3 + 5) + "s";
+            petal.style.opacity = Math.random() * 0.6;
             document.body.appendChild(petal);
-            setTimeout(() => petal.remove(), 7000);
+            setTimeout(() => petal.remove(), 8000);
         }
-        setInterval(crearPetalo, 250);
+        setInterval(crearPetalo, 400);
     </script>
 </body>
 </html>
+
 
 
 
